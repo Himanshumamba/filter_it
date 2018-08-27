@@ -1,0 +1,96 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+    <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<style type="text/css">
+		.highlight{
+
+			color: red
+
+		}
+
+	</style>
+    </head>
+    <body>
+
+<input type="tex" name="" id ="txname">
+<button value="Replace" onclick="myFunction();"> Replace </button>  
+
+
+    <input type='file' accept='text/plain' onchange='openFile(event)'><br>
+    <div id='output'>
+    ...
+    </div>
+
+
+      <script>
+      var openFile = function(event) {
+
+      	var regex = /(<([^>]+)>)/ig ;
+      
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(){
+
+          var text = reader.result.replace(regex, "");
+
+          var node = document.getElementById('output');
+          node.innerText = text;
+
+
+
+       
+
+
+          console.log(reader.result.substring(0, 200));
+        };
+        reader.readAsText(input.files[0]);
+
+       
+      }
+
+
+    function myFunction(str) {
+	var txname =document.getElementById("txname").value;
+	var p =document.getElementById("output").innerHTML;
+
+
+var res = p.replace(/test/g,("<span class='highlight'>"+ txname+"</span>"));
+
+console.log(res);
+
+          var node = document.getElementById('output');
+          node.innerHTML= res ;
+
+
+
+       
+
+
+
+       
+      }
+
+
+
+
+    </script>
+    </body>
+    </html>
+
+https://jsfiddle.net/xvoodueb/
